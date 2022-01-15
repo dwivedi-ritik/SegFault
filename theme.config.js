@@ -1,7 +1,7 @@
 // theme.config.js
 export default {
-    projectLink: 'https://github.com/shuding/nextra', // GitHub link in the navbar
-    docsRepositoryBase: 'https://github.com/shuding/nextra/blob/master', // base URL for the docs repository
+    projectLink: 'https://github.com/shuding/blogs-and-docs', // GitHub link in the navbar
+    docsRepositoryBase: 'https://github.com/dwivedi-ritik/blogs-and-docs', // base URL for the docs repository
     titleSuffix: ' – ritik',
     nextLinks: true,
     prevLinks: true,

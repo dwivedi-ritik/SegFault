@@ -1,0 +1,114 @@
+---
+title: Setting up samba server in linux 
+description: 
+---
+
+
+### Setting up samba server on local network and stream movies on local server
+
+![netflix](https://www.protocol.com/media-library/netflix-queried-people-in-a-survey-about-a-wide-range-of-features-and-content-including-podcasts-user-generated-playlists-how-tos-and-more.jpg?id=24541797&width=1245&quality=85&coordinates=0%2C314%2C0%2C315&height=700)
+
+what if i tell you that you can make your own netflix server on your home and stream in all of your devices! 
+
+In this article i will explain to you how you can build your own netlix server.
+
+Samba is great tool for setting up local file sharing and streaming platform. To setup samba server on your local network first
+you need to install samba on your machine. Depending upon the distro type you can your package manager to install samba.
+but for `arch linux` you can use 
+
+```shell
+$ sudo pacman -S samba
+``` 
+
+once installation done start smaba server using this command.
+
+```shell
+$ sudo systemctl start smb 
+```
+
+once you see the green `active` symbol you just have to run through following commands.
+
+Back up Samba config file
+
+```shell
+$ sudo mv /etc/samba/smb.conf
+```
+
+Create new Samba config file
+
+```shell
+sudo vim /etc/samba/smb.conf
+```
+
+New file (change the items in bold accordingly):
+```shell
+[global]
+server string = File Server
+workgroup = LLTV
+security = user
+map to guest = Bad User
+name resolve order = bcast host
+include = /etc/samba/shares.conf
+```
+
+Create Samba shares config file
+```shell
+sudo vim /etc/samba/shares.conf
+```
+
+New file (change the items in bold accordingly):
+
+```shell
+[Public Files]
+path = /share/public_files
+force user = smbuser
+force group = smbgroup
+create mask = 0664
+force create mode = 0664
+directory mask = 0775
+force directory mode = 0775
+public = yes
+writable = yes
+ 
+[Protected Files]
+path = /share/private_files
+force user = smbuser
+force group = smbgroup
+create mask = 0664
+force create mode = 0664
+directory mask = 0775
+force directory mode = 0775
+public = yes
+writable = no
+```
+
+Create samba user and group
+Create group:
+```shell
+$ sudo groupadd --system smbgroup
+```
+Create user:
+```shell
+$ sudo useradd --system --no-create-home --group smbgroup -s /bin/false smbuser
+```
+Create shared directories
+Create directories:
+```shell
+$ sudo mkdir -p /share/public_files
+$ sudo mkdir /share/private_files
+```
+Change ownership/permissions:
+```shell
+$ sudo chown -R smbuser:smbgroup /share
+$ sudo chmod -R g+w /share
+```
+once all this done open up file manager and there you find two Files
+`public_files` and `private_files`
+
+just paste all your movies in `public_files`.
+
+now open `vlc media player` on your android phone and make sure your mobile and pc are on same network.
+at below of the vlc menu you find your `user_name` just click on it.
+
+then you will find `public_files` and `private_files` folders there. 
+just open those up and start streaming 😎.

@@ -1,0 +1,94 @@
+---
+title: Guessing game in python
+description: Guessing is my favorite game whenever i start learning any new programming language.
+author:
+  name: ritik
+---
+
+## Guessing game in python
+
+
+
+Guessing game is one of my favorite game whenever i start learning any new programming language. It literary cover all basic concept of
+any programming langueges. It cover `loop` , `if-else`, `input` and some logic stuffs. Here in this article will we see how we can make our own guessig game in python and if you keep up with end i have some bonus trick for you 🤠.
+
+### Lets Start
+
+first we need to make a python file , lets just name it `gussing.py`. Open up your favorite text editor and start typing. first we need to make a lucky num , lets assume that lucky number is '3'.so declare a variable and assign in 3.
+
+```python
+lucky_num = 3
+```
+
+now we have done that lets just make 3 chance that if user exceeded that limit we will tell him that you lose the game. For that lets make a loop of 3 range and make a `input` function so that user can input his value.
+
+> Do note `input` function return `string` so we have to convert it into a`int` first.
+
+```python
+lucky_name = 3
+for _ in range(3):
+  n = int(input("Enter lucky number: "))
+```
+
+now our program is 50% ready to roll but wait how would we verify that given input is equal to the `lucky_num` or not ?
+for that there is older but effective method where we use a flag variable for verifying these type of condtions. But wait did we declare a flag ? lol make variable name `flag` and initalize it will `0` and put it before the for loop. After that our code will look like this
+
+```python
+lucky_num = 3
+#flag variable which declare after
+flag = 1
+for _ in range(3):
+  n = int(input("Enter lucky number: "))
+
+```
+
+now we have to make a condtion that if `n == lucky_num` change flag value to 1 and break the loop.
+
+```python
+lucky_num = 3
+#flag variable which declare after
+flag = 1
+for _ in range(3):
+  n = int(input("Enter lucky number: "))
+  if(n == lucky_num):
+    flag = 1
+    break
+```
+
+how program is nearly done but at last we have to do some formated output so we will make `if-else` statement. if flag is equal to 1 that means user guessed the correct number else he lose.
+
+```python
+lucky_num = 3
+#flag variable which declare after
+flag = 1
+for _ in range(3):
+  n = int(input("Enter lucky number: "))
+  if(n == lucky_num):
+    flag = 1
+    break
+if (flag == 1):
+  print("You won")
+else:
+  print("You lose")
+```
+
+### Bonus
+
+i have told you intially that if you stick with me at the end of this article i have some bonus trick and python fact for you so here it is. Do you know python have `for-else` statement ?
+let me just show you our program in `for-else`
+
+```python
+lucky_num = 3
+#flag variable which declare after
+flag = 1
+for _ in range(3):
+  n = int(input("Enter lucky number: "))
+  if(n == lucky_num):
+    print("You won")
+else:
+  print("You lose")
+```
+
+as you can we have removed `flag`.`for-else` if the foor loop run without any interupt , interupt i mean without going into the condition statment which you written in your program it will then run the else block and if `if-conition` does get executed `for-else` will not execute `else` block.
+
+so here it is folks <i>Guessing game in python</i>.

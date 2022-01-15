@@ -31,7 +31,7 @@ once you see the green `active` symbol you just have to run through following co
 Back up Samba config file
 
 ```shell
-$ sudo mv /etc/samba/smb.conf
+$ sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.backup
 ```
 
 Create new Samba config file
@@ -40,7 +40,8 @@ Create new Samba config file
 sudo vim /etc/samba/smb.conf
 ```
 
-New file (change the items in bold accordingly):
+New file (change the items in bold accordingly)
+
 ```shell
 [global]
 server string = File Server
@@ -52,11 +53,12 @@ include = /etc/samba/shares.conf
 ```
 
 Create Samba shares config file
+
 ```shell
 sudo vim /etc/samba/shares.conf
 ```
 
-New file (change the items in bold accordingly):
+New file (change the items in bold accordingly)
 
 ```shell
 [Public Files]
@@ -84,25 +86,29 @@ writable = no
 
 Create samba user and group
 Create group:
+
 ```shell
 $ sudo groupadd --system smbgroup
 ```
 Create user:
+
 ```shell
 $ sudo useradd --system --no-create-home --group smbgroup -s /bin/false smbuser
 ```
 Create shared directories
 Create directories:
+
 ```shell
 $ sudo mkdir -p /share/public_files
 $ sudo mkdir /share/private_files
 ```
 Change ownership/permissions:
+
 ```shell
 $ sudo chown -R smbuser:smbgroup /share
 $ sudo chmod -R g+w /share
 ```
-once all this done open up file manager and there you find two Files
+once all this done open up file manager and there you find two folder on network section
 `public_files` and `private_files`
 
 just paste all your movies in `public_files`.

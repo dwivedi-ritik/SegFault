@@ -1,22 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+---
+title: Classic button styling in css
+---
+import BtnComponent from '../../components/btn.js'
 
-body , html , *{
-    font-family: 'Ubuntu Mono', monospace;
-}
+## Classic button styling in css
 
-.con_footer {
-    display: flex;
-    gap: 7px;
-}
+<BtnComponent />
 
-/* style of btn component */
+### Tempate code for this style.
 
+HTML code
+
+```html
+<a class="cta-link" href="/constructor">Go Create!</a>
+```
+
+CSS Code
+
+```css
 a{
-    color:black;
+  color:black;
+  font-family:Barlow;
 }
-  
+
 .cta-link {
-    margin-top: 40px;
     border: 4px solid #000;
     display: inline-block;
     vertical-align: middle;
@@ -60,6 +67,7 @@ a{
 }
 
 * , :before  ,:after{
-box-sizing:border-box;
+  box-sizing:border-box;
 }
-  
+
+```

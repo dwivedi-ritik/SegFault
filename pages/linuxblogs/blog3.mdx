@@ -1,0 +1,104 @@
+---
+title : Weird text animation in c
+---
+
+## Weird text animation in c
+
+Have you seen some movies where text are in cryptic form but when hacker 
+press his enter key everything becomes decrypted.
+
+Well i have made same type of program but in c which can convert your
+command line arguments into the cryptic from and then decrypt into normal form.
+
+## Code:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+void randoms_string(int n, char *res)
+{
+    int random_int;
+    srand(n);
+    for (int i = 0; i < n; i++)
+    {
+        random_int = 33 + rand() % 92 + 1;
+        res[i] = (char)random_int;
+    }
+}
+
+void main(int argc, char **argv)
+{
+    int total_length = 0;
+
+    for (int i = 1; i < argc; i++)
+    {
+        total_length += strlen(argv[i]);
+        total_length += 1;
+    };
+
+    if (total_length == 0)
+        exit(1);
+
+    char res[total_length];
+
+    int k;
+
+    randoms_string(total_length, res);
+    printf("\x1B[36m\r");
+
+    for (int i = 0; i < total_length; i++)
+    {
+        usleep(100000);
+        printf("%c", res[i]);
+        fflush(stdout);
+    }
+    // Animation stufs
+    /*I have to loop until the user character printed
+    for that i will first loop that index if its crossed 126 i have to set back to the 33
+    */
+    printf("\x1B[33m\r");
+
+    k = 0;
+    for (int i = 1; i < argc; i++)
+    {
+        int len = 0;
+        while (len < strlen(argv[i]))
+        {
+            int pos = argv[i][len];
+            int curr = res[k];
+
+            while (curr != pos)
+            {
+                usleep(10000);
+                printf("%c\b", curr);
+                fflush(stdout);
+                (pos > curr) ? ++curr : curr--;
+            }
+            printf("%c", pos);
+            printf("");
+            fflush(stdout);
+            k++;
+            len++;
+        }
+        printf(" ");
+        fflush(stdout);
+    }
+}
+```
+## Run 
+
+- First compile this program using `gcc` compiler
+```shell
+$ gcc animate.c -o animate
+```
+
+- then run
+
+```shell
+$./animate you own text animation
+```
+
+do let me know the result :)

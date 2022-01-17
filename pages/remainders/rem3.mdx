@@ -1,0 +1,50 @@
+---
+title: Multithreading in C
+---
+
+## Multithreading in C
+
+Here code snippet of Multithreading in C.
+
+```c
+#include <stdio.h>
+#include <pthread.h>
+#include <unistd.h>
+
+struct thread_args
+{
+    char *alpha;
+    int n;
+};
+
+void *printer(void *arg)
+{
+    struct thread_args *args = arg;
+
+    for (int i = 0; i < args->n; i++)
+    {
+        sleep(1);
+        printf("%s ", args->alpha);
+        fflush(stdout);
+    }
+    return NULL;
+}
+
+void main()
+{
+    pthread_t new_thread;
+    struct thread_args arg1;
+    arg1.alpha = "ritik";
+    arg1.n = 5;
+
+    pthread_create(&new_thread, NULL, printer, (void *)&arg1);
+    for (int i = 0; i < 5; i++)
+    {
+        printf("hello");
+        fflush(stdout);
+    }
+
+    pthread_join(new_thread, NULL);
+}
+```
+

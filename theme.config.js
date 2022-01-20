@@ -1,8 +1,8 @@
 // theme.config.js
 export default {
-    projectLink: 'https://github.com/shuding/blogs-and-docs', // GitHub link in the navbar
-    docsRepositoryBase: 'https://github.com/dwivedi-ritik/blogs-and-docs', // base URL for the docs repository
-    titleSuffix: ' – ritik',
+    github: 'https://github.com/dwivedi-ritik', // GitHub link in the navbar
+    docsRepositoryBase: 'https://github.com/dwivedi-ritik/blogs-and-docs/blob/master', // base URL for the docs repository
+    titleSuffix: ' –ritik',
     nextLinks: true,
     prevLinks: true,
     search: true,

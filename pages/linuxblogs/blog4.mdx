@@ -1,0 +1,93 @@
+---
+title : Setting up proper Github workflow with SSH
+---
+
+## Setting up proper Github workflow with SSH
+
+As you already know that Github has removed the password authentication 
+support on <b>August 13 2021</b>. They have forced their user to use
+Personal Access Token instead of password.
+But storing and managing access token is very difficult task , No matter
+how hard you try to store it. One day you end up creating another one and this cycle never stop.
+
+We don't want to copy paste the long access token just for simple task of pushing our
+code to Github. For ease of our task we are going to `ssh` instead of `https`.
+
+But first you have to add a `ssh` key to your Github account but first we to generate one.
+
+### Generating SSH key
+
+- Open up your favorite terminal and type in
+
+```shell
+$ ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+ here replace `your_email@example.com` with email which is registered on your github account.
+
+- You will prompted for default file location of key. Just hit enter.
+
+```shell
+> Enter a file in which to save the key (/home/you/.ssh/algorithm): [Press enter]
+```
+- You will get prompted of [passphrase](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases) , you can set empty passphrase and just hit enter.
+
+Once thats done you will get your `key fingerprint` but don't copy yet because that will be 
+stripped down version of key.
+
+```shell
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/ritik/.ssh/id_ed25519):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/ritik/.ssh/id_ed25519
+Your public key has been saved in /home/ritik/.ssh/id_ed25519.pub
+```
+
+- In above result select the key file path , in my case it is `/home/ritik/.ssh/id_ed25519.pub`.
+
+- run below command.
+
+```shell
+$ cat /home/ritik/.ssh/id_ed25519.pub
+```
+- Then you find your original key
+
+```shell
+$ cat /home/ritik/.ssh/id_ed25519.pub
+ssh-ed25519 AAAAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxK8475 dwi.ritik20@gmail.com
+```
+-  copy all the text except `email` part. Your key will look something like this.
+
+`ssh-ed25519 AAAAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxK8475`
+
+
+### Registering SSH key on Github
+
+- Go to your Github `setting` -> `SSH and PGP` section.
+- Click on `New SSH Key`.
+- Give a name to your key.
+- Paste key in shown box.
+- After that save your key.
+
+You have succesfully add `ssh` key in your Github Acccunt.
+
+### Changing remote origin url to ssh
+
+If you have a existing repository which origin url is set on `https` , you can
+easily change it to `ssh`.
+
+- Find your repository on github and click `Code` button.
+- And select `ssh` and copy the text.
+- Text will look something like below text.
+```shell
+git@github.com:your_user_name/your_repo.git
+```
+- Now open your `local repository` into terminal.
+- Set <b>remote</b> origin to ssh
+
+```shell
+$ git remote -set-url git@github.com:your_user_name/your_repo.git
+```
+
+Now you can easily push your code on Github without worrying about access token.
+

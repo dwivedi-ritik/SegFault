@@ -83,11 +83,15 @@ easily change it to `ssh`.
 git@github.com:your_user_name/your_repo.git
 ```
 - Now open your `local repository` into terminal.
-- Set <b>remote</b> origin to ssh
+- Set <b>remote</b> url to ssh
+
 
 ```shell
-$ git remote -set-url git@github.com:your_user_name/your_repo.git
+$ git remote set-url origin git@github.com:your_user_name/your_repo.git
 ```
 
+- here `origin` is your alias of remote url. It should be your alias of remote url in my case i have set it to "origin".
+
 Now you can easily push your code on Github without worrying about access token.
+
 

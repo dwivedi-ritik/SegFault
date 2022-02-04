@@ -1,0 +1,24 @@
+---
+title : Push your code on Github like Pro
+---
+
+## Push your code on Github like Pro
+
+I never liked to type 4 commands each time for pushing your code to github. 
+
+So i have created a alise for that with random commits name.
+
+paste the below code to your default `shellrc` file .
+
+```bash
+#Get random gibbrish word
+
+get_random(){
+	random_commit=`shuf /usr/share/dict/cracklib-small | awk 'FNR == 1 { print $1 }'`
+}
+alias gpm='get_random; git add .; git commit -m ${random_commit}; git push origin main'
+```
+
+make sure you have file located at `/usr/share/dict/cracklib-small`. For my system Manjaro `cracklib-small` file consists of lots of english dictionary words.
+for you system it maybe different.
+

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
 
 body , html , *{
-    font-family: 'Ubuntu Mono', monospace;
+    /* font-family: 'Ubuntu Mono', monospace; */
 }
 
 .con_footer {
@@ -15,11 +15,6 @@ body , html , *{
     margin-right: auto;
     margin-bottom: 20px;
     text-align: center;
-    width:300px;
-    height:300px;
-    object-fit:cover;
-    border: 3px solid white;
-    border-radius:50%;
 }
 /* style of btn component */
 

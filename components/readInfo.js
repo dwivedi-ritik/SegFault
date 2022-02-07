@@ -1,7 +1,7 @@
 import React from 'react'
 const style = {
-    fontSize: '3px',
-
+    opacity: "0.8",
+    fontSize: "0.8rem"
 }
 
 const ReadInfo = (props) => {

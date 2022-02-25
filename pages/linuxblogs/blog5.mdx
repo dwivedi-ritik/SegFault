@@ -1,0 +1,67 @@
+### Regular Expression beginner guide for Grep
+
+I always struggle understanding regular expression because of the re cryptic syntax. In the end of this article you surely get better understanding on regular expression. 
+
+- `^`   Matching character must start with characters which are written after .
+
+- `$`   Matching character must end with characters which are writter before .
+
+- `.`   It matches any single character except whitespace.
+
+- `*`   More like wildcard , it matches 0 or more characters. 
+
+- `+`   It matches 1 or more characters.
+
+- `?`   It matches 0 or 1 character.
+
+## 
+
+## Match by range
+
+`[0-9]` we can specified range of numbers for match
+
+```shell
+$ echo "181-3443-554" | grep '[0-9]'
+```
+
+> **181-3443-554**
+
+it matches each number that comes between 0-9 and including 0 and 1. you can even specify group of particular characters to match  
+
+
+
+
+
+## Word Boundary
+
+Boundary condition checks that matching regex must be boundary of the word. 
+
+Here boundary means end or start of some word. 
+
+we use `\b` to make boundary condition to match with end of word.
+
+For eg
+
+```shell
+$ echo "Avenger Assemble" | grep 'mble\b'
+```
+
+output 
+
+>  Avenger Asse**mble**
+
+we can also use `\b` to make boundary condition to match with start of word.
+
+For eg
+
+```shell
+$ echo "ahh shit! here we go again" | grep 'ain\b'
+```
+
+output 
+
+> ahh shit! here we go ag**ain**
+
+
+
+
